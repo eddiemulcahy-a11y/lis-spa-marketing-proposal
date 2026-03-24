@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Li's Spa — Marketing Growth Proposal | The Odigo Group</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--od:#112c49;--tl:#218884;--gr:#43b870;--gy:#728384;--lt:#adc6c9;--bg:#f3f4f7;--wm:#F97852;--wh:#fff;--bk:#1a1a1a;
+--db:#2C3E50;--sg:#5B8C7B;--gd:#C8A96E;--ln:#E8D5C4;--cr:#F5F0EB}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;background:#e0e2e6;-webkit-font-smoothing:antialiased}
+
+.wrap{max-width:880px;margin:0 auto;padding:24px 20px 60px}
+
+/* STEP CARDS */
+.step{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease;pointer-events:none;max-height:0;overflow:hidden;margin-bottom:0}
+.step.visible{opacity:1;transform:translateY(0);pointer-events:auto;max-height:none;overflow:visible;margin-bottom:28px}
+.card{background:var(--wh);border-radius:14px;padding:44px 48px;box-shadow:0 4px 24px rgba(0,0,0,.05);position:relative;overflow:hidden}
+
+/* CONTINUE BUTTON */
+.continue-wrap{text-align:center;margin-bottom:28px;opacity:0;transform:translateY(20px);transition:opacity .5s ease .3s,transform .5s ease .3s}
+.continue-wrap.visible{opacity:1;transform:translateY(0)}
+.continue-btn{display:inline-block;padding:14px 36px;background:var(--tl);color:var(--wh);font-family:'Lato',sans-serif;font-weight:700;font-size:14px;border:none;border-radius:8px;cursor:pointer;letter-spacing:.5px;transition:background .2s}
+.continue-btn:hover{background:var(--od)}
+.continue-btn.reveal{background:var(--gd);color:var(--db)}
+.continue-btn.reveal:hover{background:#b89a5e}
+
+/* PROGRESS */
+.progress{display:flex;justify-content:center;gap:6px;margin-bottom:28px;position:sticky;top:16px;z-index:50}
+.progress-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.35);transition:all .3s}
+.progress-dot.active{background:var(--tl);width:24px;border-radius:5px}
+.progress-dot.done{background:var(--gr)}
+
+/* TYPOGRAPHY — PROPOSAL */
+.sl{font-weight:700;font-size:10px;color:var(--tl);text-transform:uppercase;letter-spacing:2.5px;margin-bottom:6px}
+h1{font-family:'Lato',sans-serif;font-weight:900;color:var(--od);line-height:1.15}
+h2{font-family:'Lato',sans-serif;font-weight:900;font-size:26px;color:var(--od);margin-bottom:14px}
+.bt{font-size:14px;color:var(--gy);line-height:1.8;margin-bottom:14px}
+.dk{background:var(--od);border-radius:10px;padding:20px 24px;margin-bottom:12px}
+.dk-l{font-weight:700;font-size:10px;color:var(--gr);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px}
+.dk-t{font-size:13px;color:var(--lt);line-height:1.7}
+.lt-card{background:var(--bg);border-radius:10px;padding:18px 22px;margin-bottom:12px}
+.lt-bl{border-left:4px solid var(--tl)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+/* TABLE */
+.tbl{border-radius:10px;overflow:hidden;border:1px solid #e2e6ea;margin-bottom:14px}
+.tbl-h{display:grid;grid-template-columns:1.2fr .8fr 1fr;background:var(--od);padding:12px 20px}
+.tbl-h span{font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:1px}
+.tbl-r{display:grid;grid-template-columns:1.2fr .8fr 1fr;padding:10px 20px;border-bottom:1px solid #e8eaed}
+.tbl-r:nth-child(even){background:var(--bg)}.tbl-r:nth-child(odd){background:var(--wh)}
+.c1{font-weight:700;font-size:12.5px;color:var(--od)}.c2{font-size:12.5px;color:var(--gy)}.c3{font-weight:700;font-size:12.5px;color:var(--tl)}
+
+/* ITEMS */
+.num{display:flex;align-items:flex-start;margin-bottom:14px}
+.num-c{width:28px;height:28px;border-radius:50%;background:var(--gr);color:var(--wh);font-weight:900;font-size:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-right:14px;margin-top:2px}
+.it{font-weight:700;font-size:14px;color:var(--od);margin-bottom:3px}
+.id{font-size:12.5px;color:var(--gy);line-height:1.65}
+.arr{display:flex;align-items:flex-start;margin-bottom:14px}
+.arr-i{flex-shrink:0;margin-right:12px;margin-top:4px;width:0;height:0;border-top:7px solid transparent;border-bottom:7px solid transparent;border-left:12px solid var(--wm)}
+.sn{display:flex;align-items:flex-start;margin-bottom:18px}
+.sn-n{font-weight:900;font-size:28px;color:var(--tl);margin-right:18px;line-height:1;min-width:40px}
+
+/* PHASES */
+.ph{margin-bottom:20px}
+.ph-h{display:flex;align-items:center;margin-bottom:10px}
+.ph-d{width:10px;height:10px;border-radius:50%;margin-right:10px}
+.ph-t{font-weight:900;font-size:15px;color:var(--od)}
+.ph-i{display:flex;align-items:flex-start;margin-left:20px;margin-bottom:5px}
+.ph-i span{font-size:10px;margin-right:8px;margin-top:2px}
+.ph-i p{font-size:12.5px;color:var(--gy);line-height:1.55}
+
+/* TIERS */
+.tier{border-radius:10px;padding:18px 20px;margin-bottom:14px;position:relative}
+.tier-d{border:1px solid #e2e6ea;background:var(--wh)}
+.tier-r{border:2px solid var(--tl);background:rgba(33,136,132,.03)}
+.tier-badge{position:absolute;top:-10px;right:16px;background:var(--tl);color:var(--wh);font-weight:700;font-size:10px;padding:3px 10px;border-radius:4px;text-transform:uppercase;letter-spacing:1px}
+.tier-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.tier-name{font-weight:900;font-size:17px;color:var(--od)}
+.tier-price{font-weight:700;font-size:15px}
+.tier-items{margin-bottom:10px}
+.ti{display:flex;align-items:flex-start;margin-bottom:3px}
+.ti span{font-size:8px;margin-right:6px;margin-top:5px}
+.ti p{font-size:11.5px;color:var(--gy);line-height:1.5}
+.tier-out{background:var(--bg);border-radius:6px;padding:8px 12px}
+.tier-out-l{font-weight:700;font-size:11px;color:var(--od);margin-bottom:2px}
+.tier-out-t{font-size:11px;color:var(--gy);line-height:1.5}
+
+/* BRAND GUIDE TYPOGRAPHY */
+.bsl{font-weight:700;font-size:10px;color:var(--sg);text-transform:uppercase;letter-spacing:2.5px;margin-bottom:6px}
+.bh2{font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:24px;color:var(--db);margin-bottom:14px}
+.bbt{font-size:13px;color:var(--gy);line-height:1.75;margin-bottom:12px}
+.bcard{background:var(--cr);border-radius:10px;padding:16px 20px;margin-bottom:10px}
+.bcard-dk{background:var(--db);border-radius:10px;padding:16px 20px;margin-bottom:10px}
+.bcard-dk-l{font-weight:700;font-size:10px;color:var(--gd);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:5px}
+.bcard-dk-t{font-size:12px;color:#c8d0d6;line-height:1.65}
+.bcl{font-weight:700;font-size:13px;color:var(--db);margin-bottom:6px}
+.bbl{border-left:4px solid var(--gd)}
+.bbl-tl{border-left:4px solid var(--sg)}
+
+/* SWATCHES */
+.sw{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.sw-b{width:40px;height:40px;border-radius:6px;flex-shrink:0}
+.sw-n{font-weight:700;font-size:12px;color:var(--bk)}
+.sw-h{font-size:10px;color:var(--gy);font-family:monospace}
+
+/* PLACEHOLDERS */
+.bph{border:2px dashed #d4cdc4;border-radius:8px;background:var(--cr);display:flex;align-items:center;justify-content:center;text-align:center;min-height:100px;padding:16px}
+.bph-dk{border:2px dashed #3d5060;border-radius:8px;background:var(--db);display:flex;align-items:center;justify-content:center;text-align:center;min-height:100px;padding:16px}
+.bph span,.bph-dk span{font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:2px}
+.bph span{color:var(--gy)}.bph-dk span{color:var(--lt)}
+.bph-sub{font-weight:400!important;font-size:8px!important;letter-spacing:1px!important;opacity:.6;display:block;margin-top:3px}
+
+/* VALUES */
+.vr{display:flex;align-items:flex-start;margin-bottom:14px}
+.vr-c{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:15px;color:white;flex-shrink:0;margin-right:12px}
+.vr-t{font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:14px;color:var(--db);margin-bottom:2px}
+.vr-d{font-size:12px;color:var(--gy);line-height:1.6}
+
+/* VOICE CARDS */
+.vc{border-radius:8px;padding:14px 16px}
+.vc-do{background:rgba(91,140,123,.08)}.vc-no{background:#fdf0f0}
+.vc-l{font-weight:700;font-size:12px;margin-bottom:6px}
+.vc-i{font-size:11.5px;color:var(--db);margin-bottom:3px;line-height:1.45}
+
+/* CHANNELS */
+.ch{border-radius:6px;padding:10px 14px;margin-bottom:6px}
+.ch-e{background:var(--cr)}.ch-o{background:var(--wh);border:1px solid #eee}
+.ch-n{font-weight:700;font-size:12px;color:var(--db)}
+.ch-tone{font-size:9px;color:var(--sg);font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.ch-ex{font-size:11px;color:var(--gy);line-height:1.5;font-style:italic;margin-top:2px}
+
+/* MESSAGING */
+.mr{display:flex;align-items:flex-start;margin-bottom:6px}
+.mr-l{font-weight:700;font-size:9px;color:var(--sg);text-transform:uppercase;letter-spacing:1px;min-width:78px;margin-top:2px}
+.mr-t{font-size:12px;color:var(--gy);line-height:1.5}
+
+/* DIVIDER */
+.section-divider{width:60px;height:3px;border-radius:2px;margin:0 auto 28px}
+
+/* FOOTER */
+.foot{text-align:center;padding:20px;font-size:11px;color:var(--lt)}
+.foot a{color:var(--tl);text-decoration:none}
+
+/* RESPONSIVE */
+@media(max-width:700px){.wrap{padding:16px 12px 40px}.card{padding:28px 22px;border-radius:10px}.g2{grid-template-columns:1fr}.tbl-h,.tbl-r{grid-template-columns:1fr}h2{font-size:20px}.bh2{font-size:20px}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<!-- PROGRESS DOTS -->
+<div class="progress" id="progress"></div>
+
+<!-- STEP 0: COVER -->
+<div class="step visible" data-step="0">
+<div class="card" style="min-height:380px;display:flex;flex-direction:column;justify-content:space-between;">
+<div>
+<div style="font-weight:900;font-size:12px;color:var(--lt);letter-spacing:1px;margin-bottom:48px;">odi<span style="color:var(--gr);">go</span> <span style="color:var(--gr);">&#9654;</span></div>
+<div style="width:50px;height:3px;background:var(--tl);border-radius:2px;margin-bottom:24px;"></div>
+<h1 style="font-size:34px;margin-bottom:10px;">Marketing Growth Proposal</h1>
+<p style="font-size:17px;color:var(--gy);margin-bottom:5px;">Li's Spa &mdash; Redmond, WA</p>
+<p style="font-size:12px;color:var(--lt);">March 2026</p>
+</div>
+<div class="dk" style="padding:22px 26px;margin:0;">
+<div class="dk-l">Prepared For</div>
+<p style="font-weight:700;font-size:16px;color:var(--wh);margin-bottom:3px;">Manisha, Owner &mdash; Li's Spa</p>
+<p class="dk-t">13200 Old Redmond Rd, Suite 130, Redmond, WA 98052<br>lispa-redmond.com &nbsp;|&nbsp; 425.786.8089 &nbsp;|&nbsp; Mon&ndash;Sun 10 AM &ndash; 8:30 PM</p>
+</div>
+</div>
+</div>
+<div class="continue-wrap visible" data-for="0"><button class="continue-btn" onclick="reveal(1)">Begin &rarr;</button></div>
+
+<!-- STEP 1: INTRO -->
+<div class="step" data-step="1">
+<div class="card">
+<div class="sl">Introduction</div>
+<h2>About This Proposal</h2>
+<p class="bt">This proposal outlines a marketing plan designed specifically for Li's Spa. It's built around two goals: growing your Instagram presence to 1,000 followers and driving more booked appointments and repeat business.</p>
+<p class="bt">We've reviewed your website, services, existing offers, online reviews, and brand positioning to develop a strategy grounded in where you are today and where you want to go.</p>
+<div class="lt-card lt-bl">
+<p style="font-weight:700;font-size:13px;color:var(--od);margin-bottom:8px;">Two Connected Goals</p>
+<p style="font-size:13px;color:var(--gy);line-height:1.7;">Instagram isn't a vanity metric &mdash; it's the front door for new clients evaluating their options. Every recommendation ties back to growing your audience or filling your appointment book. Most do both.</p>
+</div>
+</div>
+</div>
+<div class="continue-wrap" data-for="1"><button class="continue-btn" onclick="reveal(2)">Continue &rarr;</button></div>
+
+<!-- STEP 2: STRENGTHS -->
+<div class="step" data-step="2">
+<div class="card">
+<div class="sl">Assessment</div>
+<h2>What We See: Your Strengths</h2>
+<div class="num"><div class="num-c">1</div><div><div class="it">Authentic Brand Story</div><div class="id">Founded by Runli Li in 2012. Your journey from corporate burnout to spa ownership resonates deeply on social media and in the local community.</div></div></div>
+<div class="num"><div class="num-c">2</div><div><div class="it">Insurance Acceptance</div><div class="id">Most spas in Redmond don't accept insurance. This positions Li's Spa as a therapeutic provider and removes a major barrier for chronic pain and injury clients.</div></div></div>
+<div class="num"><div class="num-c">3</div><div><div class="it">Broad Service Menu</div><div class="id">Ten services covering stress relief, chronic pain, athletic recovery, prenatal care, couples, and facials. Multiple audiences, one cohesive brand.</div></div></div>
+<div class="num"><div class="num-c">4</div><div><div class="it">Strong Reviews &amp; Loyalty</div><div class="id">Testimonials highlight long-term loyalty, genuine therapeutic results, and fair pricing &mdash; conversion gold when deployed strategically.</div></div></div>
+<div class="num"><div class="num-c">5</div><div><div class="it">7-Day Availability + Online Booking</div><div class="id">Open every day with Fresha in place. The conversion infrastructure exists &mdash; the gap is driving more traffic to it.</div></div></div>
+</div>
+</div>
+<div class="continue-wrap" data-for="2"><button class="continue-btn" onclick="reveal(3)">Continue &rarr;</button></div>
+
+<!-- STEP 3: OPPORTUNITIES -->
+<div class="step" data-step="3">
+<div class="card">
+<svg style="position:absolute;top:20px;right:24px;opacity:.15;" width="40" height="40" viewBox="0 0 24 24"><polygon points="4,2 4,22 22,12" fill="#218884"/></svg>
+<div class="sl">Assessment</div>
+<h2>Where the Opportunity Is</h2>
+<div class="arr"><div class="arr-i"></div><div><div class="it">Social Media Consistency</div><div class="id">Instagram is the primary discovery platform for local wellness businesses. A consistent content engine will change everything.</div></div></div>
+<div class="arr"><div class="arr-i"></div><div><div class="it">Local Search Visibility</div><div class="id">When someone searches 'massage near me,' Li's Spa should be one of the first results. Google Business Profile optimization will get you there.</div></div></div>
+<div class="arr"><div class="arr-i"></div><div><div class="it">Retention &amp; Rebooking Systems</div><div class="id">Getting a client in the door once is valuable. Getting them back every 3&ndash;4 weeks is transformational.</div></div></div>
+<div class="arr"><div class="arr-i"></div><div><div class="it">Referral &amp; Partnership Networks</div><div class="id">Chiropractors, PTs, OB/GYNs, yoga studios, and corporate wellness programs at Microsoft are natural referral sources most spas never tap.</div></div></div>
+<div class="arr"><div class="arr-i"></div><div><div class="it">Founder Story as Content</div><div class="id">Your personal narrative &mdash; from burnout to wellness advocate to spa owner &mdash; is compelling, authentic, and currently underutilized.</div></div></div>
+</div>
+</div>
+<div class="continue-wrap" data-for="3"><button class="continue-btn" onclick="reveal(4)">Continue &rarr;</button></div>
+
+<!-- STEP 4: GOALS -->
+<div class="step" data-step="4">
+<div class="card">
+<svg style="position:absolute;top:20px;right:24px;opacity:.15;" width="40" height="40" viewBox="0 0 24 24"><polygon points="4,2 4,22 22,12" fill="#218884"/></svg>
+<div class="sl">Goals</div>
+<h2>6-Month Growth Targets</h2>
+<div class="tbl">
+<div class="tbl-h"><span style="color:var(--lt);">Goal</span><span style="color:var(--lt);">Current</span><span style="color:var(--gr);">6-Mo Target</span></div>
+<div class="tbl-r"><span class="c1">Instagram Followers</span><span class="c2">~75*</span><span class="c3">1,000</span></div>
+<div class="tbl-r"><span class="c1">Monthly Bookings</span><span class="c2">TBD at kickoff</span><span class="c3">20% increase</span></div>
+<div class="tbl-r"><span class="c1">Repeat Visit Rate</span><span class="c2">TBD at kickoff</span><span class="c3">35%+ within 60 days</span></div>
+<div class="tbl-r"><span class="c1">Google Reviews</span><span class="c2">~20, 4.6 stars</span><span class="c3">50+, 4.5+ stars</span></div>
+<div class="tbl-r"><span class="c1">Referral Bookings</span><span class="c2">Informal</span><span class="c3">10% of new clients</span></div>
+<div class="tbl-r"><span class="c1">Local Search Rank</span><span class="c2">Not in top results</span><span class="c3">Top 3 for 'massage Redmond'</span></div>
+<div class="tbl-r"><span class="c1">Email/SMS List</span><span class="c2">None visible</span><span class="c3">300+ contacts</span></div>
+</div>
+<p style="font-size:11px;color:var(--gy);font-style:italic;">* Estimated from public data. Exact baselines confirmed during onboarding.</p>
+</div>
+</div>
+<div class="continue-wrap" data-for="4"><button class="continue-btn" onclick="reveal(5)">Continue &rarr;</button></div>
+
+<!-- STEP 5: STRATEGY -->
+<div class="step" data-step="5">
+<div class="card">
+<svg style="position:absolute;top:20px;right:24px;opacity:.15;" width="40" height="40" viewBox="0 0 24 24"><polygon points="4,2 4,22 22,12" fill="#218884"/></svg>
+<div class="sl">Strategy</div>
+<h2>How We Get There</h2>
+<p class="bt">Five interconnected channels &mdash; each reinforces the others.</p>
+<div class="sn"><div class="sn-n">01</div><div><div class="it">Instagram Content &amp; Growth</div><div class="id">Full content strategy &mdash; calendar, feed posts, Reels, Stories &mdash; plus in-spa tactics to convert foot traffic into followers.</div></div></div>
+<div class="sn"><div class="sn-n">02</div><div><div class="it">Local SEO &amp; Google Business</div><div class="id">Optimized profile with photos, service listings, weekly posts, and systematic review generation.</div></div></div>
+<div class="sn"><div class="sn-n">03</div><div><div class="it">Reviews &amp; Social Proof</div><div class="id">Automated post-visit review requests, testimonial content, and consistent response protocol.</div></div></div>
+<div class="sn"><div class="sn-n">04</div><div><div class="it">Partnerships &amp; Referrals</div><div class="id">Outreach to local businesses, healthcare providers, fitness studios, and corporate wellness programs.</div></div></div>
+<div class="sn"><div class="sn-n">05</div><div><div class="it">Retention &amp; Loyalty</div><div class="id">Post-visit follow-ups, rebook reminders, birthday offers, and a membership concept for recurring revenue.</div></div></div>
+<div class="lt-card">
+<p style="font-weight:700;font-size:12px;color:var(--tl);margin-bottom:4px;">Paid Advertising (When Ready)</p>
+<p style="font-size:12px;color:var(--gy);line-height:1.6;">$300&ndash;500/month on Instagram/Facebook targeting Redmond/Eastside residents, introduced once the organic foundation is solid.</p>
+</div>
+</div>
+</div>
+<div class="continue-wrap" data-for="5"><button class="continue-btn" onclick="reveal(6)">Continue &rarr;</button></div>
+
+<!-- STEP 6: 90-DAY PLAN -->
+<div class="step" data-step="6">
+<div class="card">
+<svg style="position:absolute;top:20px;right:24px;opacity:.15;" width="40" height="40" viewBox="0 0 24 24"><polygon points="4,2 4,22 22,12" fill="#218884"/></svg>
+<div class="sl">Execution</div>
+<h2>90-Day Rollout</h2>
+<div class="ph"><div class="ph-h"><div class="ph-d" style="background:var(--tl);"></div><div class="ph-t">Month 1 &mdash; Foundation</div></div>
+<div class="ph-i"><span style="color:var(--tl);">&#9654;</span><p>Optimize Google Business Profile</p></div>
+<div class="ph-i"><span style="color:var(--tl);">&#9654;</span><p>Begin consistent Instagram posting (4&ndash;5x/week)</p></div>
+<div class="ph-i"><span style="color:var(--tl);">&#9654;</span><p>Install in-spa QR codes and follow signage</p></div>
+<div class="ph-i"><span style="color:var(--tl);">&#9654;</span><p>Launch post-visit automation (thank you &rarr; review &rarr; rebook)</p></div>
+<div class="ph-i"><span style="color:var(--tl);">&#9654;</span><p>Introduce first-time visitor offer ($15 off)</p></div>
+</div>
+<div class="ph"><div class="ph-h"><div class="ph-d" style="background:var(--gr);"></div><div class="ph-t">Month 2 &mdash; Growth</div></div>
+<div class="ph-i"><span style="color:var(--gr);">&#9654;</span><p>Launch first Instagram giveaway</p></div>
+<div class="ph-i"><span style="color:var(--gr);">&#9654;</span><p>Ramp Reels to 2&ndash;3/week</p></div>
+<div class="ph-i"><span style="color:var(--gr);">&#9654;</span><p>Begin partnership and influencer outreach</p></div>
+<div class="ph-i"><span style="color:var(--gr);">&#9654;</span><p>Enhance referral program ($10/$10 two-sided)</p></div>
+<div class="ph-i"><span style="color:var(--gr);">&#9654;</span><p>Launch paid ads if budget allows</p></div>
+</div>
+<div class="ph"><div class="ph-h"><div class="ph-d" style="background:var(--wm);"></div><div class="ph-t">Month 3 &mdash; Optimization</div></div>
+<div class="ph-i"><span style="color:var(--wm);">&#9654;</span><p>Analyze data &mdash; double down on what's working</p></div>
+<div class="ph-i"><span style="color:var(--wm);">&#9654;</span><p>Launch Wellness Membership ($99/mo)</p></div>
+<div class="ph-i"><span style="color:var(--wm);">&#9654;</span><p>Corporate wellness outreach (Microsoft, Eastside)</p></div>
+<div class="ph-i"><span style="color:var(--wm);">&#9654;</span><p>Full KPI review and months 4&ndash;6 strategy</p></div>
+</div>
+</div>
+</div>
+<div class="continue-wrap" data-for="6"><button class="continue-btn" onclick="reveal(7)">Continue &rarr;</button></div>
+
+<!-- STEP 7: INVESTMENT -->
+<div class="step" data-step="7">
+<div class="card">
+<div class="sl">Investment</div>
+<h2>Choose Your Growth Path</h2>
+<div class="tier tier-d">
+<div class="tier-head"><span class="tier-name">Starter</span><span class="tier-price" style="color:var(--gy);">$800 &ndash; $1,200/mo</span></div>
+<div class="tier-items"><div class="ti"><span style="color:var(--gy);">&#9679;</span><p>Content strategy, 12&ndash;16 posts/mo, daily Stories, GBP management, automation setup, monthly review</p></div></div>
+<div class="tier-out"><div class="tier-out-l">6-Month Outcome</div><div class="tier-out-t">600&ndash;800 followers. Moderate booking increase. Improved review volume.</div></div>
+</div>
+<div class="tier tier-r">
+<div class="tier-badge">Recommended</div>
+<div class="tier-head"><span class="tier-name">Growth</span><span class="tier-price" style="color:var(--tl);">$1,500 &ndash; $2,500/mo</span></div>
+<div class="tier-items">
+<div class="ti"><span style="color:var(--tl);">&#9679;</span><p>Everything in Starter, plus: 16&ndash;20 posts/mo, Reels, ad management ($300&ndash;500/mo spend), influencer partnerships, referral program, newsletter, partnership outreach, bi-weekly reporting</p></div>
+</div>
+<div class="tier-out"><div class="tier-out-l">6-Month Outcome</div><div class="tier-out-t">1,000+ followers. 20&ndash;30% booking increase. Strong referral &amp; review pipeline.</div></div>
+</div>
+<div class="tier tier-d">
+<div class="tier-head"><span class="tier-name">Accelerated</span><span class="tier-price" style="color:var(--wm);">$3,000 &ndash; $4,500/mo</span></div>
+<div class="tier-items"><div class="ti"><span style="color:var(--wm);">&#9679;</span><p>Everything in Growth, plus: higher ad spend + Google Ads, quarterly shoots, corporate outreach, membership launch, advanced automation, weekly strategy calls</p></div></div>
+<div class="tier-out"><div class="tier-out-l">6-Month Outcome</div><div class="tier-out-t">1,000+ followers. 30&ndash;50% booking increase. Membership revenue. Dominant local presence.</div></div>
+</div>
+</div>
+</div>
+<div class="continue-wrap" data-for="7"><button class="continue-btn" onclick="reveal(8)">Continue &rarr;</button></div>
+
+<!-- STEP 8: CLOSING + CTA -->
+<div class="step" data-step="8">
+<div class="card">
+<div class="sl">Next Steps</div>
+<h2>Let's Get Started</h2>
+<p class="bt">Li's Spa already has the hardest things to build: a genuine story, loyal clients, strong reviews, and a real commitment to care. What's missing isn't quality &mdash; it's visibility and systems.</p>
+<p class="bt">This plan closes that gap. Every recommendation is practical, measurable, and tied to real business outcomes. We'd love to be your partner in this next chapter.</p>
+<div class="dk" style="text-align:center;padding:28px;">
+<p style="font-weight:700;font-size:14px;color:var(--gr);margin-bottom:8px;">Ready to talk?</p>
+<p class="dk-t" style="margin-bottom:16px;">Let's schedule a 30-minute call to walk through this proposal and answer any questions.</p>
+<a href="mailto:eddie@theodigogroup.com?subject=Li's%20Spa%20%E2%80%94%20Let's%20Talk&body=Hi%20Eddie%2C%0A%0AI've%20reviewed%20the%20proposal%20and%20I'd%20like%20to%20schedule%20a%20call.%0A%0AThanks%2C%0AManisha" style="display:inline-block;padding:12px 32px;background:var(--tl);color:var(--wh);font-weight:700;font-size:14px;border-radius:8px;text-decoration:none;">Email Eddie to Schedule &rarr;</a>
+</div>
+<div style="margin-top:20px;padding-top:16px;border-top:1px solid #e2e6ea;">
+<p style="font-weight:900;font-size:14px;color:var(--od);margin-bottom:3px;">Eddie Mulcahy</p>
+<p style="font-size:13px;color:var(--gy);">CMO, The Odigo Group &nbsp;|&nbsp; eddie@theodigogroup.com</p>
+</div>
+</div>
+</div>
+<div class="continue-wrap" data-for="8"><button class="continue-btn reveal" onclick="reveal(9)">See what we've already started building for you &rarr;</button></div>
+
+<!-- STEP 9: BRAND GUIDE REVEAL -->
+<div class="step" data-step="9">
+<div class="section-divider" style="background:var(--gd);"></div>
+<div class="card" style="border:2px solid var(--gd);">
+<div class="bsl">Included</div>
+<div class="bh2">Visual Brand Guidelines</div>
+<p class="bbt">We've already started developing a complete brand identity system for Li's Spa. This is a preview of the brand guidelines document you'll receive upon engagement.</p>
+
+<!-- BRAND: MISSION -->
+<div class="g2" style="margin-bottom:14px;">
+<div class="bcard bbl"><p style="font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:13px;color:var(--db);margin-bottom:4px;">Mission</p><p style="font-size:12px;color:var(--gy);line-height:1.65;font-style:italic;">"To provide a sanctuary of wellness and healing where every person is cared for with kindness and guided on their journey to feeling better &mdash; naturally."</p></div>
+<div class="bcard bbl-tl"><p style="font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:13px;color:var(--db);margin-bottom:4px;">Brand Promise</p><p style="font-size:12px;color:var(--gy);line-height:1.65;font-style:italic;">"People before profit. Connection before transaction. Every guest feels safe, valued, and restored."</p></div>
+</div>
+
+<!-- BRAND: VALUES -->
+<p class="bcl" style="margin-top:16px;">Brand Values</p>
+<div class="g2" style="margin-bottom:14px;">
+<div>
+<div class="vr"><div class="vr-c" style="background:var(--sg);">C</div><div><div class="vr-t">Care</div><div class="vr-d">We listen before we treat. We remember names and preferences.</div></div></div>
+<div class="vr"><div class="vr-c" style="background:var(--gd);">S</div><div><div class="vr-t">Sanctuary</div><div class="vr-d">An escape from the noise. Designed to make people feel held and safe.</div></div></div>
+</div>
+<div>
+<div class="vr"><div class="vr-c" style="background:var(--sg);">H</div><div><div class="vr-t">Healing</div><div class="vr-d">Not a luxury &mdash; a therapeutic resource. We take that seriously.</div></div></div>
+<div class="vr"><div class="vr-c" style="background:var(--gd);">T</div><div><div class="vr-t">Trust</div><div class="vr-d">Licensed, insured, clinically grounded. Insurance accepted.</div></div></div>
+</div>
+</div>
+
+<!-- BRAND: COLORS -->
+<p class="bcl" style="margin-top:16px;">Color Palette</p>
+<div class="g2" style="margin-bottom:14px;">
+<div>
+<div class="sw"><div class="sw-b" style="background:#2C3E50;"></div><div><div class="sw-n">Deep Slate</div><div class="sw-h">#2C3E50</div></div></div>
+<div class="sw"><div class="sw-b" style="background:#5B8C7B;"></div><div><div class="sw-n">Sage Green</div><div class="sw-h">#5B8C7B</div></div></div>
+<div class="sw"><div class="sw-b" style="background:#C8A96E;"></div><div><div class="sw-n">Warm Gold</div><div class="sw-h">#C8A96E</div></div></div>
+</div>
+<div>
+<div class="sw"><div class="sw-b" style="background:#E8D5C4;"></div><div><div class="sw-n">Linen</div><div class="sw-h">#E8D5C4</div></div></div>
+<div class="sw"><div class="sw-b" style="background:#F5F0EB;"></div><div><div class="sw-n">Cream</div><div class="sw-h">#F5F0EB</div></div></div>
+<div class="sw"><div class="sw-b" style="background:#fff;border:1px solid #ddd;"></div><div><div class="sw-n">White</div><div class="sw-h">#FFFFFF</div></div></div>
+</div>
+</div>
+
+<!-- BRAND: TYPOGRAPHY -->
+<p class="bcl" style="margin-top:16px;">Typography</p>
+<div class="g2" style="margin-bottom:14px;">
+<div class="bcard"><p style="font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:22px;color:var(--db);margin-bottom:4px;">Playfair Display</p><p style="font-size:11px;color:var(--gy);">Headlines, titles, feature text</p><p style="font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:15px;color:var(--db);margin-top:8px;">Relax. Rejuvenate. Renew.</p></div>
+<div class="bcard"><p style="font-weight:900;font-size:22px;color:var(--db);margin-bottom:4px;">Lato</p><p style="font-size:11px;color:var(--gy);">Body copy, captions, buttons, social</p><p style="font-size:13px;color:var(--gy);margin-top:8px;line-height:1.6;">Your body deserves rest. Book your session today.</p></div>
+</div>
+
+<!-- BRAND: VOICE -->
+<p class="bcl" style="margin-top:16px;">Brand Voice</p>
+<div class="g2" style="margin-bottom:14px;">
+<div class="vc vc-do"><p class="vc-l" style="color:var(--sg);">We Are</p><p class="vc-i">&#10003; Warm &amp; welcoming</p><p class="vc-i">&#10003; Calm &amp; reassuring</p><p class="vc-i">&#10003; Knowledgeable &amp; credible</p><p class="vc-i">&#10003; Professional &amp; grounded</p></div>
+<div class="vc vc-no"><p class="vc-l" style="color:#c0392b;">We Are Not</p><p class="vc-i">&#10007; Salesy or pushy</p><p class="vc-i">&#10007; Clinical or cold</p><p class="vc-i">&#10007; Trendy or gimmicky</p><p class="vc-i">&#10007; Vague or fluffy</p></div>
+</div>
+
+<!-- BRAND: LOGO PLACEHOLDERS -->
+<p class="bcl" style="margin-top:16px;">Logo System</p>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px;">
+<div><div class="bph"><span>Primary<span class="bph-sub">[ File to be placed ]</span></span></div><p style="font-weight:700;font-size:10px;color:var(--db);margin-top:4px;">Primary Mark</p></div>
+<div><div class="bph"><span>Stacked<span class="bph-sub">[ File to be placed ]</span></span></div><p style="font-weight:700;font-size:10px;color:var(--db);margin-top:4px;">Stacked</p></div>
+<div><div class="bph"><span>Lotus Icon<span class="bph-sub">[ File to be placed ]</span></span></div><p style="font-weight:700;font-size:10px;color:var(--db);margin-top:4px;">Icon Mark</p></div>
+</div>
+
+<!-- BRAND: TAGLINE -->
+<div class="bcard bbl" style="margin-top:16px;">
+<p style="font-weight:700;font-size:10px;color:var(--db);margin-bottom:4px;">Primary Tagline</p>
+<p style="font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:18px;color:var(--db);font-style:italic;">Where relaxation meets care.</p>
+</div>
+
+<div class="bcard-dk" style="margin-top:12px;text-align:center;padding:20px;">
+<p style="font-size:12px;color:var(--lt);font-style:italic;">This is a preview. The full brand guidelines &mdash; including logo usage rules, photography style, tone-by-channel guide, messaging framework, and hashtag strategy &mdash; are included with your engagement.</p>
+</div>
+
+</div>
+</div>
+
+<!-- FINAL FOOTER -->
+<div class="foot">
+<p>&copy; 2026 Prepared by <a href="https://theodigogroup.com">The Odigo Group</a></p>
+</div>
+
+</div><!-- end wrap -->
+
+<script>
+const totalSteps = 10;
+let currentStep = 0;
+
+// Build progress dots
+const progressEl = document.getElementById('progress');
+for (let i = 0; i < totalSteps; i++) {
+  const dot = document.createElement('div');
+  dot.className = 'progress-dot' + (i === 0 ? ' active' : '');
+  dot.dataset.dot = i;
+  progressEl.appendChild(dot);
+}
+
+function updateProgress(step) {
+  document.querySelectorAll('.progress-dot').forEach((dot, i) => {
+    dot.className = 'progress-dot';
+    if (i < step) dot.className += ' done';
+    if (i === step) dot.className += ' active';
+  });
+}
+
+function reveal(step) {
+  // Hide the continue button that was just clicked
+  const prevBtn = document.querySelector(`.continue-wrap[data-for="${step - 1}"]`);
+  if (prevBtn) { prevBtn.style.opacity = '0'; prevBtn.style.pointerEvents = 'none'; prevBtn.style.maxHeight = '0'; prevBtn.style.marginBottom = '0'; prevBtn.style.transition = 'all .3s ease'; }
+
+  // Show the next step
+  const nextStep = document.querySelector(`.step[data-step="${step}"]`);
+  if (nextStep) {
+    nextStep.classList.add('visible');
+    // Scroll to it smoothly
+    setTimeout(() => {
+      nextStep.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  }
+
+  // Show its continue button
+  const nextBtn = document.querySelector(`.continue-wrap[data-for="${step}"]`);
+  if (nextBtn) {
+    setTimeout(() => { nextBtn.classList.add('visible'); }, 600);
+  }
+
+  currentStep = step;
+  updateProgress(step);
+}
+</script>
+</body>
+</html>
