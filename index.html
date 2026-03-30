@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Li's Spa — Growth Partnership | The Odigo Group</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--tl:#218884;--tld:#1a6b68;--gld:#c9a84c;--gldd:#b8953e;--bg:#faf9f6;--wh:#ffffff;--dg:#1a1a1a;--mg:#6b6b6b;--lg:#e8e4dd;--warm:#f5f0e8;--red:#c0392b;--grn:#218884}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--dg);line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:780px;margin:0 auto;padding:20px 16px}
+
+/* Progress */
+.progress{position:sticky;top:0;z-index:100;background:rgba(250,249,246,.95);backdrop-filter:blur(8px);padding:12px 0;display:flex;justify-content:center;gap:8px}
+.progress-dot{width:8px;height:8px;border-radius:50%;background:var(--lg);transition:all .4s ease}
+.progress-dot.active{background:var(--tl);transform:scale(1.3)}
+.progress-dot.done{background:var(--gld)}
+
+/* Steps */
+.step{opacity:0;transform:translateY(30px);max-height:0;overflow:hidden;transition:all .6s ease}
+.step.visible{opacity:1;transform:translateY(0);max-height:none;overflow:visible}
+
+/* Cover */
+.cover{text-align:center;padding:60px 20px;margin-bottom:30px}
+.cover-brand{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:700;color:var(--tl);letter-spacing:1px;margin-bottom:6px}
+.cover-sub{font-size:14px;color:var(--mg);letter-spacing:3px;text-transform:uppercase;margin-bottom:30px}
+.cover-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;color:var(--dg);margin-bottom:6px}
+.cover-by{font-size:13px;color:var(--mg);margin-bottom:30px}
+.cover-date{font-size:12px;color:var(--mg)}
+
+/* Cards */
+.card{background:var(--wh);border-radius:12px;padding:36px 32px;margin-bottom:20px;border:1px solid var(--lg);position:relative}
+.card-warm{background:var(--warm)}
+
+/* Section labels */
+.sl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--tl);margin-bottom:8px}
+h2{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:var(--dg);margin-bottom:14px}
+h3{font-size:15px;font-weight:700;color:var(--dg);margin-bottom:8px}
+p,.bt{font-size:14px;color:var(--mg);margin-bottom:12px}
+
+/* Buttons */
+.btn{display:inline-block;padding:14px 36px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all .2s ease;text-decoration:none}
+.btn-tl{background:var(--tl);color:#fff}.btn-tl:hover{background:var(--tld)}
+.btn-gld{background:var(--gld);color:#fff}.btn-gld:hover{background:var(--gldd)}
+.btn-out{background:transparent;color:var(--tl);border:2px solid var(--tl)}.btn-out:hover{background:var(--tl);color:#fff}
+
+/* Continue */
+.continue-wrap{text-align:center;margin:20px 0 40px;opacity:0;max-height:0;overflow:hidden;transition:all .4s ease}
+.continue-wrap.visible{opacity:1;max-height:60px}
+
+/* Numbered items */
+.num{display:flex;gap:14px;margin-bottom:16px;align-items:flex-start}
+.num-circle{width:28px;height:28px;min-width:28px;border-radius:50%;background:var(--tl);color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.num-t{font-size:14px;font-weight:700;color:var(--dg);margin-bottom:2px}
+.num-d{font-size:13px;color:var(--mg)}
+
+/* Phase cards */
+.phase{background:var(--warm);border-radius:10px;padding:20px 24px;margin-bottom:14px;border-left:4px solid var(--tl)}
+.phase-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.phase-title{font-size:15px;font-weight:700;color:var(--dg)}
+.phase-price{font-size:15px;font-weight:800;color:var(--tl)}
+.phase-period{font-size:12px;color:var(--mg);margin-bottom:10px}
+.phase-items{font-size:13px;color:var(--mg);line-height:1.8}
+.phase-items li{margin-bottom:2px}
+.phase-tag{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:3px 10px;border-radius:4px;margin-bottom:8px}
+
+/* Investment summary */
+.inv-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--lg);font-size:14px}
+.inv-row:last-child{border-bottom:none}
+.inv-label{color:var(--mg)}
+.inv-val{font-weight:700;color:var(--dg)}
+.inv-total{background:var(--tl);color:#fff;border-radius:8px;padding:14px 20px;display:flex;justify-content:space-between;font-size:15px;font-weight:700;margin-top:12px}
+
+/* Goals table */
+.goal-row{display:flex;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--lg);font-size:13px;align-items:center}
+.goal-row:nth-child(even){background:var(--warm)}
+.goal-metric{font-weight:600;color:var(--dg);flex:2}
+.goal-now{color:var(--mg);flex:1;text-align:center}
+.goal-target{color:var(--tl);font-weight:700;flex:1;text-align:center}
+.goal-head{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--mg);border-bottom:2px solid var(--lg)}
+
+/* Timeline */
+.tl-bar{display:flex;gap:2px;margin:16px 0 8px;height:32px;border-radius:6px;overflow:hidden}
+.tl-seg{display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff}
+.tl-labels{display:flex;font-size:11px;color:var(--mg);margin-bottom:16px}
+
+/* Website callout */
+.web-call{background:linear-gradient(135deg,#f5f0e8,#ede7db);border-radius:10px;padding:20px 24px;border:1px solid var(--gld);margin-top:16px}
+.web-call-title{font-size:14px;font-weight:700;color:var(--gldd);margin-bottom:6px}
+.web-call-desc{font-size:13px;color:var(--mg)}
+
+@media(max-width:600px){
+.cover{padding:40px 16px}.cover-brand{font-size:32px}h2{font-size:22px}.card{padding:24px 20px}
+.phase-head{flex-direction:column;align-items:flex-start;gap:4px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="progress" id="progress"></div>
+
+<!-- STEP 0: COVER -->
+<div class="step visible" data-step="0">
+<div class="cover">
+<div class="cover-brand">Li's Spa</div>
+<div class="cover-sub">Growth Partnership</div>
+<div class="cover-title">18-Month Marketing & Digital Strategy</div>
+<div class="cover-by">Prepared by The Odigo Group</div>
+<div class="cover-date">March 2026</div>
+<div style="margin-top:30px"><button class="btn btn-tl" onclick="reveal(1)">Begin →</button></div>
+</div>
+</div>
+
+<!-- STEP 1: INTRO -->
+<div class="step" data-step="1">
+<div class="card">
+<div class="sl">Hello Manisha</div>
+<h2>A Plan Built Around Your Expansion</h2>
+<p>Li's Spa has been a trusted name in therapeutic wellness in Redmond since 2012. With your new space targeting a June 1 opening (please correct me if I have the date wrong!), you're at an inflection point — more capacity means more opportunity, but only if you can fill it.</p>
+<p>This plan is designed around that reality. We start lean, focused on driving bookings for the new space before it opens. As the business grows and revenue recovers, we grow with you — adding capabilities at a pace your budget supports.</p>
+<p>By the end of 18 months, you'll have a full marketing engine, a brand-new website, and a practice built for sustained growth.</p>
+</div>
+</div>
+<div class="continue-wrap" data-for="1"><button class="btn btn-out" onclick="reveal(2)">Continue →</button></div>
+
+<!-- STEP 2: WHAT WE KNOW -->
+<div class="step" data-step="2">
+<div class="card">
+<div class="sl">Assessment</div>
+<h2>What's Working & Where the Opportunity Is</h2>
+<p class="bt">Based on our review and our conversation Friday, here's what we see:</p>
+<div class="num"><div class="num-circle">✓</div><div><div class="num-t">Strong Reputation & Loyal Clients</div><div class="num-d">12+ years of trust, genuine reviews, and long-term client relationships. This is hard to build and impossible to fake.</div></div></div>
+<div class="num"><div class="num-circle">✓</div><div><div class="num-t">Expansion Underway</div><div class="num-d">New space opening June 1 means more treatment rooms and capacity. The business is ready to grow — the marketing needs to match.</div></div></div>
+<div class="num"><div class="num-circle">✓</div><div><div class="num-t">Online Booking in Place</div><div class="num-d">Fresha is live, open 7 days a week. The conversion infrastructure exists — the gap is driving more traffic to it.</div></div></div>
+<div style="height:16px"></div>
+<div class="num"><div class="num-circle" style="background:var(--gld)">→</div><div><div class="num-t">Social Media Needs Consistency</div><div class="num-d">Instagram is the #1 discovery platform for local wellness. It's not yet working hard enough for you.</div></div></div>
+<div class="num"><div class="num-circle" style="background:var(--gld)">→</div><div><div class="num-t">Local Search Visibility Gap</div><div class="num-d">"Massage near me" in Redmond should surface Li's Spa first. Google Business Profile optimization and a review strategy will get you there.</div></div></div>
+<div class="num"><div class="num-circle" style="background:var(--gld)">→</div><div><div class="num-t">No Retention Systems</div><div class="num-d">Post-visit follow-ups, rebook reminders, loyalty incentives, and membership programs — the systems that turn one visit into a lifetime client.</div></div></div>
+<div class="num"><div class="num-circle" style="background:var(--gld)">→</div><div><div class="num-t">Website Needs a Revamp</div><div class="num-d">The current Wix site served you well, but the expansion deserves a modern, SEO-optimized online presence on HubSpot that converts visitors into bookings.</div></div></div>
+</div>
+</div>
+<div class="continue-wrap" data-for="2"><button class="btn btn-out" onclick="reveal(3)">Continue →</button></div>
+
+<!-- STEP 3: GOALS -->
+<div class="step" data-step="3">
+<div class="card">
+<div class="sl">Goals</div>
+<h2>18-Month Growth Targets</h2>
+<p class="bt">Realistic, measurable targets tied to your expansion timeline.</p>
+<div style="border-radius:8px;overflow:hidden;border:1px solid var(--lg)">
+<div class="goal-row goal-head"><span class="goal-metric">Metric</span><span class="goal-now">Current</span><span class="goal-target">18-Mo Target</span></div>
+<div class="goal-row"><span class="goal-metric">Instagram Followers</span><span class="goal-now">~75</span><span class="goal-target">1,500+</span></div>
+<div class="goal-row"><span class="goal-metric">Monthly Bookings</span><span class="goal-now">Baseline TBD</span><span class="goal-target">40–50% increase</span></div>
+<div class="goal-row"><span class="goal-metric">Repeat Visit Rate</span><span class="goal-now">TBD</span><span class="goal-target">40%+ within 60 days</span></div>
+<div class="goal-row"><span class="goal-metric">Google Reviews</span><span class="goal-now">~20</span><span class="goal-target">75+</span></div>
+<div class="goal-row"><span class="goal-metric">Local Search Rank</span><span class="goal-now">Not top 3</span><span class="goal-target">Top 3 "massage Redmond"</span></div>
+<div class="goal-row"><span class="goal-metric">Email/SMS List</span><span class="goal-now">None</span><span class="goal-target">500+ contacts</span></div>
+<div class="goal-row"><span class="goal-metric">Website</span><span class="goal-now">Current Wix</span><span class="goal-target">New SEO-optimized site on HubSpot</span></div>
+</div>
+</div>
+</div>
+<div class="continue-wrap" data-for="3"><button class="btn btn-out" onclick="reveal(4)">Continue →</button></div>
+
+<!-- STEP 4: THE PLAN -->
+<div class="step" data-step="4">
+<div class="card">
+<div class="sl">The Plan</div>
+<h2>Three Phases, 18 Months</h2>
+<p class="bt">Each phase builds on the last. Your investment grows only as your business grows.</p>
+
+<!-- Visual timeline -->
+<div class="tl-bar">
+<div class="tl-seg" style="flex:6;background:var(--tl)">$1,500/mo</div>
+<div class="tl-seg" style="flex:6;background:var(--gld)">$2,000/mo</div>
+<div class="tl-seg" style="flex:6;background:var(--tld)">$2,500/mo</div>
+</div>
+<div class="tl-labels"><span style="flex:6">Apr–Sep '26</span><span style="flex:6">Oct '26–Mar '27</span><span style="flex:6">Apr–Sep '27</span></div>
+
+<!-- Phase 1 -->
+<div class="phase" style="border-left-color:var(--tl)">
+<div class="phase-tag" style="background:#e0f2f1;color:var(--tl)">Phase 1</div>
+<div class="phase-head"><span class="phase-title">Foundation & New Space Launch</span><span class="phase-price">$1,500/mo</span></div>
+<div class="phase-period">April–September 2026 (6 months) — Total: $9,000</div>
+<ul class="phase-items">
+<li>Full Instagram content strategy, calendar, and execution (16+ posts/month)</li>
+<li>Daily Stories and Reels production</li>
+<li>Google Business Profile optimization and weekly posts</li>
+<li>Automated post-visit review requests and rebook reminders</li>
+<li>Email/SMS list building and first campaigns</li>
+<li>Grand opening campaign for June 1 expansion</li>
+<li>Paid social ads beginning ~mid-May ($300/mo ad spend, billed separately and as needed)</li>
+
+<li>Referral program setup and promotion</li>
+<li>Monthly performance reporting and strategy calls</li>
+</ul>
+</div>
+
+<!-- Phase 2 -->
+<div class="phase" style="border-left-color:var(--gld)">
+<div class="phase-tag" style="background:#fdf6e3;color:var(--gldd)">Phase 2</div>
+<div class="phase-head"><span class="phase-title">Growth & Website Strategy</span><span class="phase-price">$2,000/mo</span></div>
+<div class="phase-period">October 2026–March 2027 (6 months) — Total: $12,000</div>
+<ul class="phase-items">
+<li>Everything in Phase 1, plus:</li>
+<li>Increased content volume (20+ posts/month) and higher-production Reels</li>
+<li>Influencer partnerships (2–3 per quarter)</li>
+<li>Local partnership outreach (chiros, PTs, yoga studios, corporate wellness)</li>
+<li>Wellness membership program design and launch</li>
+<li>Seasonal campaign execution (holiday, New Year wellness, etc.)</li>
+<li>Corporate wellness outreach to Eastside employers</li>
+<li><strong>New website conceptualization and architecture</strong> — full sitemap, wireframes, user flow</li>
+<li><strong>SEO-optimized copywriting</strong> — all page content, service descriptions, meta data</li>
+<li><strong>Brand refresh guidance</strong> — photography direction, visual identity for new site</li>
+<li>Bi-weekly performance reporting and strategy calls</li>
+</ul>
+<div class="web-call">
+<div class="web-call-title">Website Revamp — Included in Phase 2</div>
+<div class="web-call-desc">All strategy, content, and SEO-optimized copywriting for the new website is included in the $2,000/mo retainer. We'll migrate from your current Wix site to HubSpot — a modern, SEO-friendly platform built for growth. The actual site construction will be scoped and quoted as a separate line item once design and content are finalized — so you'll know exactly what the build costs before committing. No surprises.</div>
+</div>
+</div>
+
+<!-- Phase 3 -->
+<div class="phase" style="border-left-color:var(--tld)">
+<div class="phase-tag" style="background:#e0f2f1;color:var(--tld)">Phase 3</div>
+<div class="phase-head"><span class="phase-title">Full Stack & New Website Live</span><span class="phase-price">$2,500/mo</span></div>
+<div class="phase-period">April–September 2027 (6 months) — Total: $15,000</div>
+<ul class="phase-items">
+<li>Everything in Phase 2, plus:</li>
+<li>New website launch on HubSpot, monitoring, and optimization</li>
+<li>Advanced SEO-optimized blog content and local citations</li>
+<li>Google Ads introduction (search campaigns for high-intent terms)</li>
+<li>Email marketing automation (birthday, anniversary, seasonal, win-back)</li>
+<li>Membership program optimization and growth</li>
+<li>Professional photo/video shoot</li>
+<li>Advanced analytics and attribution reporting</li>
+<li>Bi-weekly strategy calls</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="continue-wrap" data-for="4"><button class="btn btn-out" onclick="reveal(5)">Continue →</button></div>
+
+<!-- STEP 5: INVESTMENT SUMMARY -->
+<div class="step" data-step="5">
+<div class="card">
+<div class="sl">Investment</div>
+<h2>18-Month Summary</h2>
+<p class="bt">A partnership that grows with your business.</p>
+<div class="inv-row"><span class="inv-label">Phase 1 — Foundation & Launch (Apr–Sep '26)</span><span class="inv-val">$1,500/mo × 6</span></div>
+<div class="inv-row"><span class="inv-label">Phase 2 — Growth & Website Strategy (Oct '26–Mar '27)</span><span class="inv-val">$2,000/mo × 6</span></div>
+<div class="inv-row"><span class="inv-label">Phase 3 — Full Stack & New Site (Apr–Sep '27)</span><span class="inv-val">$2,500/mo × 6</span></div>
+<div class="inv-total"><span>18-Month Retainer Total</span><span>$36,000</span></div>
+<div style="margin-top:16px">
+<div class="inv-row"><span class="inv-label">Paid ad spend (as needed, billed separately)</span><span class="inv-val">$300/mo</span></div>
+<div class="inv-row"><span class="inv-label">Website construction on HubSpot (quoted separately in Phase 2)</span><span class="inv-val">TBD</span></div>
+</div>
+<div class="web-call" style="margin-top:20px">
+<div class="web-call-title">Why This Structure?</div>
+<div class="web-call-desc">You're investing in expansion. This plan gives you 6 months to drive new bookings, fill the new space, and recover revenue before your marketing investment increases. Every step-up is tied to new capabilities — you'll always know what you're getting and why.</div>
+</div>
+</div>
+</div>
+<div class="continue-wrap" data-for="5"><button class="btn btn-out" onclick="reveal(6)">Continue →</button></div>
+
+<!-- STEP 6: WHAT SUCCESS LOOKS LIKE -->
+<div class="step" data-step="6">
+<div class="card">
+<div class="sl">Accountability</div>
+<h2>What We Track</h2>
+<p class="bt">No vanity metrics. We measure what drives bookings and revenue.</p>
+<div class="num"><div class="num-circle">1</div><div><div class="num-t">Monthly Bookings & Revenue</div><div class="num-d">The number that matters most. Are we filling the new space?</div></div></div>
+<div class="num"><div class="num-circle">2</div><div><div class="num-t">Repeat Visit Rate</div><div class="num-d">First visits become regulars. We track the rebooking loop.</div></div></div>
+<div class="num"><div class="num-circle">3</div><div><div class="num-t">New Client Acquisition</div><div class="num-d">Where they came from — social, search, referral, ads — so we invest in what works.</div></div></div>
+<div class="num"><div class="num-circle">4</div><div><div class="num-t">Google Visibility</div><div class="num-d">Search ranking, review count, profile views, direction requests.</div></div></div>
+<div class="num"><div class="num-circle">5</div><div><div class="num-t">Social Growth & Engagement</div><div class="num-d">Followers, reach, saves, shares, DMs, and booking clicks from Instagram.</div></div></div>
+<div class="num"><div class="num-circle">6</div><div><div class="num-t">Cost Per Acquisition</div><div class="num-d">How much it costs to get a new client in the door. Your benchmark for ROI.</div></div></div>
+<p style="font-size:13px;color:var(--mg);margin-top:12px">You'll receive monthly performance reports in Phase 1, bi-weekly in Phase 2, and weekly strategy calls in Phase 3.</p>
+</div>
+</div>
+<div class="continue-wrap" data-for="6"><button class="btn btn-out" onclick="reveal(7)">Continue →</button></div>
+
+<!-- STEP 7: LET'S GO -->
+<div class="step" data-step="7">
+<div class="card" style="text-align:center;padding:48px 32px">
+<div class="sl">Let's Get Started</div>
+<h2>Your Expansion Deserves a Marketing Engine Behind It</h2>
+<p style="max-width:520px;margin:0 auto 24px;font-size:14px;color:var(--mg)">Li's Spa already has the hardest things to build: a genuine story, loyal clients, strong reviews, and a real commitment to care. What's missing isn't quality — it's visibility and systems. This plan closes that gap.</p>
+<p style="max-width:520px;margin:0 auto 30px;font-size:14px;color:var(--mg)">We'd love to start in April. Ready to move forward?</p>
+<a href="mailto:eddie@theodigogroup.com?subject=Li%27s%20Spa%20%E2%80%94%20Let%27s%20Get%20Started&body=Hi%20Eddie%2C%0A%0AI%27m%20ready%20to%20move%20forward%20with%20the%2018-month%20growth%20plan.%20Let%27s%20schedule%20our%20kickoff.%0A%0AManisha" class="btn btn-tl" style="margin-right:12px">Schedule Kickoff →</a>
+<a href="mailto:eddie@theodigogroup.com?subject=Li%27s%20Spa%20%E2%80%94%20Questions&body=Hi%20Eddie%2C%0A%0AI%20have%20a%20few%20questions%20about%20the%20proposal%3A%0A%0A" class="btn btn-out">I Have Questions</a>
+<div style="margin-top:40px;padding-top:20px;border-top:1px solid var(--lg)">
+<div style="font-size:13px;color:var(--mg)">
+<strong style="color:var(--dg)">Eddie Mulcahy</strong><br>
+The Odigo Group<br>
+425.256.3020 | eddie@theodigogroup.com
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- /wrap -->
+
+<script>
+var currentStep=0,totalSteps=8;
+var progressEl=document.getElementById('progress');
+for(var i=0;i<totalSteps;i++){
+  var dot=document.createElement('div');
+  dot.className='progress-dot'+(i===0?' active':'');
+  progressEl.appendChild(dot);
+}
+function updateProgress(step){
+  document.querySelectorAll('.progress-dot').forEach(function(dot,i){
+    dot.className='progress-dot';
+    if(i<step)dot.className+=' done';
+    if(i===step)dot.className+=' active';
+  });
+}
+function reveal(step){
+  var prevBtn=document.querySelector('.continue-wrap[data-for="'+(step-1)+'"]');
+  if(prevBtn){prevBtn.style.opacity='0';prevBtn.style.pointerEvents='none';prevBtn.style.maxHeight='0';prevBtn.style.marginBottom='0';prevBtn.style.transition='all .3s ease';}
+  var nextStep=document.querySelector('.step[data-step="'+step+'"]');
+  if(nextStep){nextStep.classList.add('visible');setTimeout(function(){nextStep.scrollIntoView({behavior:'smooth',block:'start'});},100);}
+  var nextBtn=document.querySelector('.continue-wrap[data-for="'+step+'"]');
+  if(nextBtn){setTimeout(function(){nextBtn.classList.add('visible');},600);}
+  currentStep=step;
+  updateProgress(step);
+}
+// Show first continue button
+setTimeout(function(){
+  var firstBtn=document.querySelector('.continue-wrap[data-for="0"]');
+  if(firstBtn)firstBtn.classList.add('visible');
+},500);
+</script>
+</body>
+</html>
